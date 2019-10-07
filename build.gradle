@@ -1,0 +1,36 @@
+plugins {
+  // The original code that we're using is in Java,
+  // so let's just stick to that (rather than Kotlin)
+  id 'java-library'
+
+  // Magically hooks protobuf compilation into the build
+  id 'com.google.protobuf' version '0.8.10'
+
+  // Enables the protobuf plugin to auto-configure IntelliJ
+  id 'idea'
+
+  // Enables building fat JARs, to run the CLI tester
+  id 'com.github.johnrengelman.shadow' version '5.1.0'
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  // Protobuf parser and runtime dependencies
+  implementation 'com.google.protobuf:protobuf-java:3.10.0'
+}
+
+protobuf {
+  protoc {
+    // Use a pre-compiled protoc, rather than requiring it to be installed locally
+    artifact = 'com.google.protobuf:protoc:3.10.0'
+  }
+}
+
+jar {
+  manifest {
+    attributes 'Main-Class': 'com.github.orrc.android.bundle.CommandLineTester'
+  }
+}

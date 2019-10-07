@@ -1,0 +1,53 @@
+// Adapted from AOSP:
+// https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-10.0.0_r3/tools/aapt2/Resources.proto
+
+/*
+ * Copyright (C) 2016 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+syntax = "proto3";
+package aapt.pb;
+option java_package = "com.android.aapt";
+// Defines an abstract XmlNode that must be either an XmlElement, or
+// a text node represented by a string.
+message XmlNode {
+  oneof node {
+    XmlElement element = 1;
+    string text = 2;
+  }
+}
+// An <element> in an XML document.
+message XmlElement {
+  // Namespaces defined on this element.
+  repeated XmlNamespace namespace_declaration = 1;
+  // The namespace URI of this element.
+  string namespace_uri = 2;
+  // The name of this element.
+  string name = 3;
+  // The attributes of this element.
+  repeated XmlAttribute attribute = 4;
+  // The children of this element.
+  repeated XmlNode child = 5;
+}
+// A namespace declaration on an XmlElement (xmlns:android="http://...").
+message XmlNamespace {
+  string prefix = 1;
+  string uri = 2;
+}
+// An attribute defined on an XmlElement (android:text="...").
+message XmlAttribute {
+  string namespace_uri = 1;
+  string name = 2;
+  string value = 3;
+}
