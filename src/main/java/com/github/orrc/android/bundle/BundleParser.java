@@ -6,4 +6,10 @@ public interface BundleParser {
 
     /** Determines the version code of an Android Bundle (.aab) file. */
     long getVersionCode();
+
+    /** Determines the minSdkVersion value of an Android Bundle (.aab) file. */
+    String getMinSdkVersion();
+
+    /** Determines the targetSdkVersion value of an Android Bundle (.aab) file. */
+    String getTargetSdkVersion();
 }

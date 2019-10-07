@@ -15,10 +15,16 @@ class CommandLineTester {
         BundleParser bundleParser = new AndroidBundleMetadataParser(new File(filename));
 
         String appId = bundleParser.getApplicationId();
-        System.out.println("Application ID: " + appId);
+        System.out.println("Application ID:   " + appId);
 
         long versionCode = bundleParser.getVersionCode();
-        System.out.println("Version code:   " + versionCode);
+        System.out.println("Version code:     " + versionCode);
+
+        String minSdkVersion = bundleParser.getMinSdkVersion();
+        System.out.println("minSdkVersion:    " + minSdkVersion);
+
+        String targetSdkVersion = bundleParser.getTargetSdkVersion();
+        System.out.println("targetSdkVersion: " + targetSdkVersion);
     }
 
 }

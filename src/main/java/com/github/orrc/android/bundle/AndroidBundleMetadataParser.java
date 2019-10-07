@@ -47,6 +47,16 @@ public class AndroidBundleMetadataParser implements BundleParser {
         return Long.parseLong(result);
     }
 
+    @Override
+    public String getMinSdkVersion() {
+        return getXPathValue(manifestXml, xPath, "/manifest/uses-sdk/@android:minSdkVersion");
+    }
+
+    @Override
+    public String getTargetSdkVersion() {
+        return getXPathValue(manifestXml, xPath, "/manifest/uses-sdk/@android:targetSdkVersion");
+    }
+
     private XmlProtoNode parseBundleManifest(File bundleFile) throws IOException {
         // We want to to inspect the manifest of the base module
         final String manifestPath = "base/manifest/AndroidManifest.xml";
