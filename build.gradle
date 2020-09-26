@@ -3,30 +3,23 @@ plugins {
   // so let's just stick to that (rather than Kotlin)
   id 'java-library'
 
-  // Magically hooks protobuf compilation into the build
-  id 'com.google.protobuf' version '0.8.10'
-
-  // Enables the protobuf plugin to auto-configure IntelliJ
-  id 'idea'
-
   // Enables building fat JARs, to run the CLI tester
   id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
 repositories {
   mavenCentral()
+  google()
+}
+
+compileJava {
+  sourceCompatibility = '1.8'
+  targetCompatibility = '1.8'
 }
 
 dependencies {
-  // Protobuf parser and runtime dependencies
-  implementation 'com.google.protobuf:protobuf-java:3.10.0'
-}
-
-protobuf {
-  protoc {
-    // Use a pre-compiled protoc, rather than requiring it to be installed locally
-    artifact = 'com.google.protobuf:protoc:3.10.0'
-  }
+  // Use the same aapt library as bundletool for parsing
+  implementation "com.android.tools.build:aapt2-proto:4.1.0-alpha01-6193524"
 }
 
 jar {

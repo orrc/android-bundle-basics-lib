@@ -31,7 +31,7 @@ abstract class XmlProtoAttributeOrBuilder<AttributeProtoT extends XmlAttributeOr
   }
 
   public final int getResourceId() {
-    return -1;
+    return getProto().getResourceId();
   }
 
   /**
@@ -41,7 +41,11 @@ abstract class XmlProtoAttributeOrBuilder<AttributeProtoT extends XmlAttributeOr
    * future.
    */
   public final String getDebugString() {
-    return getProto().getValue();
+    if (!getProto().hasCompiledItem()) {
+      return getProto().getValue();
+    }
+
+    return XmlProtoPrintUtils.getItemValueAsString(getProto().getCompiledItem());
   }
 
   @Override
