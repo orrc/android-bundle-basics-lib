@@ -48,6 +48,11 @@ public class AndroidBundleMetadataParser implements BundleParser {
     }
 
     @Override
+    public String getVersionName() {
+        return getXPathValue(manifestXml, xPath, "/manifest/@android:versionName");
+    }
+
+    @Override
     public String getMinSdkVersion() {
         return getXPathValue(manifestXml, xPath, "/manifest/uses-sdk/@android:minSdkVersion");
     }

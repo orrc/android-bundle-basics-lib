@@ -20,6 +20,9 @@ class CommandLineTester {
         long versionCode = bundleParser.getVersionCode();
         System.out.println("Version code:     " + versionCode);
 
+        String versionName = bundleParser.getVersionName();
+        System.out.println("Version name:     " + versionName);
+
         String minSdkVersion = bundleParser.getMinSdkVersion();
         System.out.println("minSdkVersion:    " + minSdkVersion);
 
